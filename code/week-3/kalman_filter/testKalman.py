@@ -1,6 +1,9 @@
 import numpy as np
-from data import measurements
-from data import true_velocity
+#from data import measurements
+#from data import true_velocity
+
+from data_test_input import measurements
+from data_test_input import true_velocity
 from kalman import KalmanFilter
 from plot import plot_graphs
 
@@ -11,8 +14,10 @@ A = np.array([
     [0, 1]
 ])
 
+# if we measure the velocity instead of position,
+# we have to modify the measurement matrix(C) from [1, 0] to [0, 1]
 C = np.array([
-    [1, 0]
+    [0, 1]
 ])
 
 R = np.array([
@@ -27,6 +32,8 @@ Q = np.array([
 KF = KalmanFilter(A, C, R, Q)
 filtered_positions = []
 filtered_velocity = []
+
+
 for m in measurements:
     x= KF.filter(m, dt)
     filtered_positions.append(x[0])

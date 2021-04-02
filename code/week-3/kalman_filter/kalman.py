@@ -3,10 +3,10 @@ import numpy as np
 class KalmanFilter:
     def __init__(self, A, C, R, Q):
         # Initialize system model matrices
-        self.A = A
-        self.C = C
-        self.R = R
-        self.Q = Q
+        self.A = A  # State transition matrix
+        self.C = C  # Measurement matrix
+        self.R = R  # Control uncertainty (covariance matrix)
+        self.Q = Q  # Measurement uncertainty (covariance matrix)
         # Initialize state variable and its covariance (with zeros)
         self.x = np.zeros(self.A.shape[1])
         self.P = np.zeros(self.R.shape)

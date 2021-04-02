@@ -13,10 +13,16 @@ Z = []
 P = []
 S = []
 
+# modify to measure the velocity, instead of position
 for w, v in zip(W, V):
-    Velp = 80 + w
-    z = Posp + Velp * dt + v
-    Posp = z - v
+    Prip = Posp + (80+w) * dt
+    z = ((Prip - Posp) / dt) + v
+    Velp = z - v
+    Posp = Prip
+    # Velp = 80 + w
+    # z = Posp + Velp * dt + v
+    # Posp = z - v
+
     Z.append(z)
     P.append(Posp)
     S.append(Velp)
