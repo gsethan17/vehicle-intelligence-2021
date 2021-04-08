@@ -30,7 +30,7 @@ class EKF:
             [1, 0, 1, 0],
             [0, 1, 0, 1],
             [0, 0, 1, 0],
-            [0, 0, 0, 1]
+             [0, 0, 0, 1]
         ], dtype=np.float32)
         # Transformation from state variable to measurement
         H_init = np.array([
