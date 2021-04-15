@@ -5,6 +5,11 @@
 [//]: # (Image References)
 [plot]: ./markov.gif
 
+## Report
+* `motion_model()` : Please refer to the lines 45 - 69 lines on `markov_localizer.py`.
+* `observation_model()` : Please refer to the lines 78 - 99 lines on `markov_localizer.py`.
+
+
 ## Assignment
 
 You will complete the implementation of a simple Markov localizer by writing the following two functions in `markov_localizer.py`:

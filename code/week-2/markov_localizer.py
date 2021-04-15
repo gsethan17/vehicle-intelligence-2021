@@ -52,7 +52,7 @@ def motion_model(position, mov, priors, map_size, stdev):
     for p in range(map_size) :
         
         # calculate the distance that vehicle have to move
-        # to pseudo porision from each possible prior positions
+        # to pseudo position from each possible prior positions
         dist = position - p
         
         # calculate the probability of the vehicle moving to

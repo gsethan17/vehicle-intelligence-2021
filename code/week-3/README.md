@@ -6,6 +6,21 @@
 [kalman-result]: ./kalman_filter/graph.png
 [EKF-results]: ./EKF/plot.png
 
+## Report
+
+* Estimate position from velocity
+    * Get the velocity measurement `date_test_input.py` by modifying `inputget.py`.
+    Please refer to line 18 to 24 on `inputgen.py` for the details.
+    * Modify address of measurement and GT value on line 2 to 6 on `testKalman.py`.
+    * Modify the measurement matrix(C) on lone 20 on `testKalman.py`.
+    
+* `update_ekf()`
+    * Computed jacobian matrix on line 45 of `EKF/kalman_filter.py` by `Jacobian` function which is predefined on `tools.py`.
+    * Calculated the S, kalman gain(K), and y on line 48 to 56 on `EKF/kalman_filter.py`.
+    * Calculated y was need to normalize between -pi and pi, that code was written on line 59 to 62 of `EKF/kalman_filter.py`.
+    * the code to get the x and p on line 66 and 68 of `EKF/kalman_filter.py`. 
+    
+
 ## Kalman Filter Example
 
 In directory [`./kalman_filter`](./kalman_filter), a sample program for a small-scale demonstration of a Kalman filter is provided. Run the following command to test:
@@ -52,3 +67,6 @@ The program consists of five modules:
 ### Assignment
 
 Complete the implementation of EKF with sensor fusion by writing the function `update_ekf()` in the module `kalman_filter`. Details are given in class and instructions are included in comments.
+
+#### Assignment performance details
+

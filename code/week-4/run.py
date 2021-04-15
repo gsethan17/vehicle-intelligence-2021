@@ -63,6 +63,7 @@ if __name__ == '__main__':
         if not pf.initialized:
             # Initialize the particle set using GNSS measurement.
             pf.initialize(m['gnss_x'], m['gnss_y'], m['gnss_theta'], *pos_std)
+
         else:
             # Prediction step
             pf.predict(delta_t, m['previous_velocity'],
@@ -71,8 +72,10 @@ if __name__ == '__main__':
         observations = [{'x': x, 'y': y} for (x, y) in \
                         zip (m['measurement_x'], m['measurement_y'])]
         pf.update_weights(sensor_range, *landmark_std, observations, Map)
+
         # Resample particles to capture posterior belief distribution.
         pf.resample()
+
         # Select the best (highest weight) particle;
         #   we will assume that this represents the vehicle's position.
         particle = pf.get_best_particle()
