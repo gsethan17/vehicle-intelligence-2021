@@ -2,6 +2,23 @@
 
 ---
 
+## Report #1
+* `prediction.py`
+    * Classified the train samples for each label in line 48 to 68 on `classifier.py`.
+    * Calculated the mean and standard deviation for each label.
+    * The calculated values are saved on predefined local variables which is defined on line 20 to 23 on `classifier.py`.
+    * Please refer to line 71 to 84 on `classifier.py`.
+    
+* `classifier.py`
+    * Calculated relative posterior probability for each label.
+    * Returned the label with the largest posterior probability.
+    * Please refer to line 99 to 112 on `classifier.py`.
+    
+* Finally, I got the 84.40 percent accuracy.
+
+## Report #2
+
+
 ## Assignment #1
 
 Under the directory [./GNB](./GNB), you are given two Python modules:
