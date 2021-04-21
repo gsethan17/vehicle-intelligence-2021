@@ -2,6 +2,21 @@
 
 ---
 
+## Report
+* Mark the destination
+    * Mark the final state(goal) with 0 value and 999 policy value.
+    * 999 is special value for marking final state.
+    * Please refer to line 74 to 76 for the details.
+
+* Compute value and policy function
+    * on every visitable state, the action that has minimum cost are chose for get the value and policy on that state.
+    * Please refer to line 80 to 89 for the details.
+
+* Traverse the policy function to generate optimum path
+    * From the initial point, visit the next state following the defined policy and corresponding action name was written on the `policy2D`.
+    * If the visited state is final state through the special policy value, * was written on the `poilcy2D`.
+    * Please refer to line 94 to 102 for the details.
+
 ## Examples
 
 We have four small working examples for demonstration of basic path planning algorithms:
