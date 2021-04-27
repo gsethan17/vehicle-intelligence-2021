@@ -20,10 +20,10 @@ computed by get_helper_data function.
 '''
 
 # weights for costs
-REACH_GOAL = 0
-EFFICIENCY = 0
+REACH_GOAL = 6
+EFFICIENCY = 1
 
-DEBUG = False
+DEBUG = True
 
 def goal_distance_cost(vehicle, trajectory, predictions, data):
     '''
@@ -32,14 +32,39 @@ def goal_distance_cost(vehicle, trajectory, predictions, data):
     Cost of being out of goal lane also becomes larger as vehicle approaches
     the goal distance.
     '''
-    return 0
+    intended_lane, final_lane, distance_to_goal = data
+    target_line = (intended_lane + final_lane) / 2
+
+    num_lane_to_goal = target_line - vehicle.goal_lane
+
+    return num_lane_to_goal / distance_to_goal
 
 def inefficiency_cost(vehicle, trajectory, predictions, data):
     '''
     Cost becomes higher for trajectories with intended lane and final lane
     that have slower traffic.
     '''
-    return 0
+    intended_lane, final_lane, distance_to_goal = data
+
+    v = [6, 7, 8, 9][final_lane]
+
+    limit_speed = vehicle.target_speed
+    buffer_speed = 1
+    target_speed = limit_speed - buffer_speed
+
+    if v > limit_speed :
+        cost = 1
+
+    elif v == target_speed :
+        cost = 0
+
+    elif v > target_speed :
+        cost = (v - target_speed) / buffer_speed
+
+    else :
+        cost = ((target_speed - v) / target_speed)
+
+    return cost
 
 def calculate_cost(vehicle, trajectory, predictions):
     '''
@@ -56,8 +81,8 @@ def calculate_cost(vehicle, trajectory, predictions):
                    * cf(vehicle, trajectory, predictions, trajectory_data)
         if DEBUG:
             print(
-                "%s has cost %.1f for lane %d" % \
-                (cf.__name__, new_cost, trajectory[-1].lane)
+                "%s::%s has cost %.1f for lane %d" % \
+                (trajectory[-1].state, cf.__name__, new_cost, trajectory[-1].lane)
             )
         cost += new_cost
     return cost

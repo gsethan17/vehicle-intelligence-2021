@@ -17,7 +17,20 @@
 * Finally, I got the 84.40 percent accuracy.
 
 ## Report #2
-
+* `choose_next_state()`
+    * Implement state transition function based on pseudo-code on manuscripts.
+    * Calculate the cost of each possible state on future.
+    * Among the possible states, select the state with minimum cost.
+    * Please refer to line 60 to 79 on `vehicle.py`.
+    
+* `cost_cunctions.py`
+    * Implement provided two cost function, `goal_distance_cost()` and `inefficiency_cost()`.
+    * To get the difference between 'PLCR' and 'LCR', I used average value of intended and final lane value on `goal_distance_cost()`.
+    * At `goal_distance_cost()`, to get the larger cost as ego-vehicle get closer to the goal, the cost was divided by distance to the goal.
+    * Implement the `inefficiency_cost()` with reference to an example on manuscripts.
+    * Please refer to line 35 to 40 and 47 to 67 on `cost_functions.py`.
+    
+* Finally, I got to the goal in 43 seconds.
 
 ## Assignment #1
 
