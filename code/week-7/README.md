@@ -6,6 +6,39 @@
 [has-example]: ./hybrid_a_star/has_example.png
 [ptg-example]: ./PTG/ptg_example.png
 
+## Report
+* `heuristic` function
+    * Implement a heuristic function to calculate cost for the hybrid A* algorithm.
+    * First, I had implemented the function as the Euclidean distance but there is a problem.
+    * It is that the trajectory at the first is follow the vertical line at the end of left line on grid.
+    * It occurred the problem on `reconstruct_path` function.
+    * Therefore, I implemented the function as the Manhatten distance.
+    * Please refer to line 162 to 164 on `hybrid_astar.py`
+    
+* `theta_to_stack_num` function
+    * I implement the function to calculate the stack number.
+    * First, I made a linear space from 0 to 2*pi into a number of theta cells.
+    * Then, corresponding number of index is returned.
+    * Please refer to line 143 to 152 on `hybrid_astar.py`
+    
+* `expand` function
+    * Compute reachable new states.
+    * next position and theta is calculated by simple bicycle model.
+    * next theta is normalized between 0 to 2 pi.
+    * new heuristic value is calculated from `heuristic` function and is summed to origin g value.
+    * Please refer to line 38 to 69 on `hybrid_astar.py`
+    
+* `search` function
+    * Check the validity through the grid shape, value of grid, and value of closed.
+    * If the new state is valid state, corresponding closed value is become 1 and origin state is added to came_from array.
+    * Please refer to line 109 to 126 on `hybrid_astar.py`
+   
+* Further plan
+    * One of problem is remained.
+    * It is that some of the cross line between states invade the unreachable space.
+    * This problem needs to be modified.
+ 
+
 ## Assignment: Hybrid A* Algorithm
 
 In directory [`./hybrid_a_star`](./hybrid_a_star), a simple test program for the hybrid A* algorithm is provided. Run the following command to test:

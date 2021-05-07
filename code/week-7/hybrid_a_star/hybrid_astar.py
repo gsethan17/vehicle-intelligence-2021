@@ -42,14 +42,18 @@ class HybridAStar:
             # Let theta2 be the vehicle's heading (in radian)
             # between 0 and 2 * PI.
             next_theta = theta + omega
-            if next_theta > 2 * np.pi:
+
+            if next_theta == 2 * np.pi :
+                next_theta == 0.0
+
+            while next_theta > 2 * np.pi:
                 next_theta = next_theta - 2 * np.pi
-            elif next_theta < 0.0:
+            while next_theta < 0.0:
                 next_theta = 2 * np.pi + next_theta
 
             # The f value of a newly expanded cell increases by heuristic value
             # from the g value of a newly expanded cell
-            f2 = current['f'] + self.heuristic(next_x, next_y, goal)
+            f2 = g2 + self.heuristic(next_x, next_y, goal)
 
             next_s = {
                 'f': f2,
@@ -100,7 +104,7 @@ class HybridAStar:
                 self.final = curr
                 found = True
                 break
-            print(curr)
+
             # Compute reachable new states and process each of them.
             next_states = self.expand(curr, goal)
             for n in next_states:
@@ -116,8 +120,8 @@ class HybridAStar:
 
                     opened.append(n)
 
-                    self.closed[stack_][self.idx(n['x'])][self.idx(n['y'])] = 1
-                    self.came_from[stack_][self.idx(n['x'])][self.idx(n['y'])] = curr
+                    self.closed[stack_][x_][y_] = 1
+                    self.came_from[stack_][x_][y_] = curr
 
                     total_closed += 1
 
@@ -155,7 +159,8 @@ class HybridAStar:
     # Implement a heuristic function to be used in the hybrid A* algorithm.
     def heuristic(self, x, y, goal):
         # TODO: implement a heuristic function.
-        dist = (math.sqrt((int(x)-goal[0])**2 + (int(y)-goal[1])**2))
+        # dist = (math.sqrt((x-goal[0])**2 + (y-goal[1])**2))
+        dist = abs(x - goal[0]) + abs(y - goal[1])
         return int(np.floor(dist))
 
     # Reconstruct the path taken by the hybrid A* algorithm.
